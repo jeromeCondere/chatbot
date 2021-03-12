@@ -25,7 +25,7 @@ while stop is False:
    if question == "\\q":
       stop = True
    else:
-      answer, similarity = predict_answer(question, questions_tokens, dense_tfidf_matrix, weight_matrix)
+      answer, similarity = predict_answer(question, questions_tokens, dense_tfidf_matrix, weight_matrix, verbose=False)
       print("    --> {}".format(answer))
       print("    (similarity is {})".format(answer))
 
