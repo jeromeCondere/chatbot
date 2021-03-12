@@ -45,9 +45,9 @@ def get_weight_questions_token(questions_tokens, dense_tfidf_matrix):
   for index, tokens in enumerate(questions_tokens):
     weight_vector = []
     for token in tokens:
-      if token in dense_tfidf_matrix.columns:
+      if token in dense_tfidf_matrix.columns and token in glove_vectors:
         weight_vector.append(dense_tfidf_matrix[token][index])
-      else:
+      elif token in glove_vectors:
         weight_vector.append(1.0)
     weight_matrix.append(weight_vector)
   return weight_matrix
@@ -56,7 +56,7 @@ def get_weight_questions_token(questions_tokens, dense_tfidf_matrix):
 def get_weights_new_sentences(sentence_tokens, dense_tfidf_matrix):
   weight_vector = []
   for token in sentence_tokens:
-    if token in dense_tfidf_matrix.columns:
+    if token in dense_tfidf_matrix.columns and token in glove_vectors:
       not_null_vector_token = dense_tfidf_matrix[token][dense_tfidf_matrix[token] > 0]
       weight_vector.append(np.average(not_null_vector_token))
     elif token in glove_vectors:

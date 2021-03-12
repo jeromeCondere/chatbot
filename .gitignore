@@ -8,3 +8,4 @@ text8*
 *.model*
 *glove*.txt
 training
+*checkpoints/
